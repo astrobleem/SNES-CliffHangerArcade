@@ -1,0 +1,16 @@
+<chapter name="roof_move05">
+	<timeline>
+		<timestart min="7" second="42" ms="663" frame="13866" />
+		<timeend min="7" second="43" ms="397" frame="13888" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="checkpoint">
+			<timeline>
+				<timestart min="7" second="42" ms="663" />
+			</timeline>
+		</event>
+	</events>
+	<result><playchapter name="roof_move06" /></result>
+</chapter>

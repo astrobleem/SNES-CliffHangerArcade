@@ -1,0 +1,21 @@
+<chapter name="endg_move49">
+	<timeline>
+		<timestart min="25" second="22" ms="122" frame="45618" />
+		<timeend min="25" second="24" ms="358" frame="45685" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="direction" automacro="action">
+			<timeline>
+				<timestart min="25" second="22" ms="122" frame="45618" />
+				<timeend min="25" second="23" ms="123" frame="45648" />
+			</timeline>
+			<params>
+				<str key="type" value="action" />
+			</params>
+			<result><playchapter name="endg_move50" /></result>
+		</event>
+	</events>
+	<result><playchapter name="endg_death05" /></result>
+</chapter>

@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER fnle_death03
+    .dw fnle_death03.events
+    .db :fnle_death03.events
+
+    DIE

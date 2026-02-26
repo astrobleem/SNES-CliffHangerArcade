@@ -1,0 +1,38 @@
+# Build artifacts
+build/
+*.o
+
+# Large binary distribution files
+distribution/*.msu
+distribution/*.pcm
+distribution/*.sfc
+distribution/*.zip
+
+# Laserdisc source video (too large for git)
+cliff/
+data/laserdisc/segments/*.m2v
+data/laserdisc/segments/*.ogg
+
+# Extracted video frames (generated)
+data/videos/frames/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Mesen saves/screenshots/recordings
+mesen/Saves/
+mesen/Screenshots/
+mesen/Avi/
+mesen/RecentFiles.xml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Claude local settings
+.claude/settings.local.json

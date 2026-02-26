@@ -1,0 +1,21 @@
+<chapter name="cstl_move10">
+	<timeline>
+		<timestart min="14" second="27" ms="401" frame="25996" />
+		<timeend min="14" second="32" ms="406" frame="26146" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="direction" automacro="direction">
+			<timeline>
+				<timestart min="14" second="27" ms="401" frame="25996" />
+				<timeend min="14" second="28" ms="402" frame="26026" />
+			</timeline>
+			<params>
+				<str key="type" value="right" />
+			</params>
+			<result><playchapter name="cstl_move11" /></result>
+		</event>
+	</events>
+	<result><playchapter name="cstl_death02" /></result>
+</chapter>

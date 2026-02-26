@@ -1,0 +1,12 @@
+<chapter name="endg_death05">
+	<timeline>
+		<timestart min="27" second="22" ms="476" frame="49225" />
+		<timeend min="27" second="36" ms="123" frame="49634" />
+	</timeline>
+	<params>
+		<int key="kills_player" value="1" />
+	</params>
+	<macros />
+	<events />
+	<result><lastcheckpoint /></result>
+</chapter>

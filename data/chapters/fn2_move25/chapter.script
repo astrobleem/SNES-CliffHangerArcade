@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER fn2_move25
+    .dw fn2_move25.events
+    .db :fn2_move25.events
+
+    DIE

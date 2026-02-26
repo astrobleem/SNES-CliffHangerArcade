@@ -1,0 +1,16 @@
+<chapter name="gtwy_move01">
+	<timeline>
+		<timestart min="2" second="53" ms="40" frame="5186" />
+		<timeend min="2" second="59" ms="780" frame="5388" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="checkpoint">
+			<timeline>
+				<timestart min="2" second="53" ms="40" />
+			</timeline>
+		</event>
+	</events>
+	<result><playchapter name="gtwy_move02" /></result>
+</chapter>

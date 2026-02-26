@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER roof_death04
+    .dw roof_death04.events
+    .db :roof_death04.events
+
+    DIE

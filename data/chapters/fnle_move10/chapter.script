@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER fnle_move10
+    .dw fnle_move10.events
+    .db :fnle_move10.events
+
+    DIE

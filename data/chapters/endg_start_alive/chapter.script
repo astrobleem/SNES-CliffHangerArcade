@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER endg_start_alive
+    .dw endg_start_alive.events
+    .db :endg_start_alive.events
+
+    DIE

@@ -1,0 +1,3 @@
+endg_death02.events:
+    .dw Event.chapter.CLS.PTR, $0000, $0121, EventResult.lastcheckpoint, none, 30, 0
+    .dw 0

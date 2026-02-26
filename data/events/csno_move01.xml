@@ -1,0 +1,16 @@
+<chapter name="csno_move01">
+	<timeline>
+		<timestart min="1" second="0" ms="60" frame="1800" />
+		<timeend min="1" second="4" ms="331" frame="1928" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="checkpoint">
+			<timeline>
+				<timestart min="1" second="0" ms="60" />
+			</timeline>
+		</event>
+	</events>
+	<result><playchapter name="csno_move02" /></result>
+</chapter>

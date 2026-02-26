@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER gtwy_start_alive
+    .dw gtwy_start_alive.events
+    .db :gtwy_start_alive.events
+
+    DIE

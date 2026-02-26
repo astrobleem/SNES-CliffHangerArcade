@@ -1,0 +1,5 @@
+fnle_move02.events:
+    .dw Event.chapter.CLS.PTR, $0000, $0209, EventResult.playchapter, fnle_death01, 124, 0
+    .dw Event.checkpoint.CLS.PTR, $0000, $0000, EventResult.none, none, 0, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $001e, EventResult.playchapter, fnle_move03, JOY_BUTTON_A, 0
+    .dw 0

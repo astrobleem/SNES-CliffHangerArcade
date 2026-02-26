@@ -1,0 +1,4 @@
+endg_move27.events:
+    .dw Event.chapter.CLS.PTR, $0000, $0016, EventResult.playchapter, endg_death03, 60, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $001e, EventResult.playchapter, endg_move28, JOY_BUTTON_A, 0
+    .dw 0

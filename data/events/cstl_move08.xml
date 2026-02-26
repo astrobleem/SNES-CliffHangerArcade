@@ -1,0 +1,11 @@
+<chapter name="cstl_move08">
+	<timeline>
+		<timestart min="14" second="25" ms="232" frame="25931" />
+		<timeend min="14" second="25" ms="666" frame="25944" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+	</events>
+	<result><playchapter name="cstl_move09" /></result>
+</chapter>

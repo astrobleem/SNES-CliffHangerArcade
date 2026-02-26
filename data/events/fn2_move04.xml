@@ -1,0 +1,11 @@
+<chapter name="fn2_move04">
+	<timeline>
+		<timestart min="18" second="44" ms="791" frame="33710" />
+		<timeend min="18" second="45" ms="125" frame="33720" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+	</events>
+	<result><playchapter name="fn2_move05" /></result>
+</chapter>

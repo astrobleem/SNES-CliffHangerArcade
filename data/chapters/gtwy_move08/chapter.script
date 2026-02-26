@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER gtwy_move08
+    .dw gtwy_move08.events
+    .db :gtwy_move08.events
+
+    DIE

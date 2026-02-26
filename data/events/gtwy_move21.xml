@@ -1,0 +1,11 @@
+<chapter name="gtwy_move21">
+	<timeline>
+		<timestart min="3" second="52" ms="699" frame="6974" />
+		<timeend min="3" second="54" ms="67" frame="7015" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+	</events>
+	<result><playchapter name="gtwy_move22" /></result>
+</chapter>

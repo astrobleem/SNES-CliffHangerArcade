@@ -1,0 +1,26 @@
+<chapter name="csno_move02">
+	<timeline>
+		<timestart min="1" second="4" ms="331" frame="1928" />
+		<timeend min="1" second="6" ms="400" frame="1990" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="checkpoint">
+			<timeline>
+				<timestart min="1" second="4" ms="331" />
+			</timeline>
+		</event>
+		<event type="direction" automacro="feet">
+			<timeline>
+				<timestart min="1" second="4" ms="331" frame="1928" />
+				<timeend min="1" second="6" ms="300" frame="1987" />
+			</timeline>
+			<params>
+				<str key="type" value="feet" />
+			</params>
+			<result><playchapter name="csno_move03" /></result>
+		</event>
+	</events>
+	<result><playchapter name="csno_death01" /></result>
+</chapter>

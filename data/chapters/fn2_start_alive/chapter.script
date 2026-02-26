@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER fn2_start_alive
+    .dw fn2_start_alive.events
+    .db :fn2_start_alive.events
+
+    DIE

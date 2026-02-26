@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER endg_move06
+    .dw endg_move06.events
+    .db :endg_move06.events
+
+    DIE

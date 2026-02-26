@@ -1,0 +1,21 @@
+<chapter name="fn2_move26">
+	<timeline>
+		<timestart min="19" second="59" ms="700" frame="35955" />
+		<timeend min="20" second="1" ms="869" frame="36020" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="direction" automacro="action">
+			<timeline>
+				<timestart min="19" second="59" ms="700" frame="35955" />
+				<timeend min="20" second="0" ms="701" frame="35985" />
+			</timeline>
+			<params>
+				<str key="type" value="action" />
+			</params>
+			<result><playchapter name="fn2_move27" /></result>
+		</event>
+	</events>
+	<result><playchapter name="fn2_death02" /></result>
+</chapter>

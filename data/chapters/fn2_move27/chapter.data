@@ -1,0 +1,3 @@
+fn2_move27.events:
+    .dw Event.chapter.CLS.PTR, $0000, $008f, EventResult.playchapter, fn2_move28, 113, 0
+    .dw 0

@@ -1,0 +1,21 @@
+<chapter name="csno_move05">
+	<timeline>
+		<timestart min="1" second="12" ms="940" frame="2186" />
+		<timeend min="1" second="15" ms="943" frame="2276" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="direction" automacro="direction">
+			<timeline>
+				<timestart min="1" second="12" ms="940" frame="2186" />
+				<timeend min="1" second="14" ms="274" frame="2226" />
+			</timeline>
+			<params>
+				<str key="type" value="up" />
+			</params>
+			<result><playchapter name="csno_move06" /></result>
+		</event>
+	</events>
+	<result><playchapter name="csno_death01" /></result>
+</chapter>

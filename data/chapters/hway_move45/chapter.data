@@ -1,0 +1,4 @@
+hway_move45.events:
+    .dw Event.chapter.CLS.PTR, $0000, $0027, EventResult.playchapter, hway_death01, 216, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $001e, EventResult.playchapter, hway_move46, JOY_BUTTON_A, 0
+    .dw 0

@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER roof_move12
+    .dw roof_move12.events
+    .db :roof_move12.events
+
+    DIE

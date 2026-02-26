@@ -1,0 +1,12 @@
+<chapter name="roof_death02">
+	<timeline>
+		<timestart min="10" second="8" ms="442" frame="18235" />
+		<timeend min="10" second="19" ms="853" frame="18577" />
+	</timeline>
+	<params>
+		<int key="kills_player" value="1" />
+	</params>
+	<macros />
+	<events />
+	<result><lastcheckpoint /></result>
+</chapter>

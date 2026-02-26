@@ -1,0 +1,4 @@
+gtwy_move29.events:
+    .dw Event.chapter.CLS.PTR, $0000, $0075, EventResult.playchapter, gtwy_death05, 169, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $0029, EventResult.playchapter, scene_router, JOY_BUTTON_A, 0
+    .dw 0

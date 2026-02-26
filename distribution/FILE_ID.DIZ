@@ -1,0 +1,59 @@
+  +-+--------------------------------------------+-+
+  |/| SUPER DRAGON'S LAIR ARCADE             SNES |/|
+  +-+--------------------------------------------+-+
+  | |                                            | |
+  | |    ====================================    | |
+  | |    =  5 , 7 5 2   M E G A   P O W E R =   | |
+  | |    ====================================    | |
+  | |                                            | |
+  | |    Neo Geo maxed out at 716 Mbit.          | |
+  | |    We are running 5,752 Mbit.              | |
+  | |    On a Super Nintendo.                    | |
+  | |    You're welcome.                         | |
+  | |                                            | |
+  +-+--------------------------------------------+-+
+  | |                                            | |
+  | | Full-motion video on REAL SNES hardware!   | |
+  | | MSU-1 powered - SD2SNES / FXPAK Pro       | |
+  | |                                            | |
+  | | 29 Scenes .......... 518 Chapters          | |
+  | | 478 PCM Tracks ..... 719 MB total          | |
+  | | 3 Game Modes:                              | |
+  | |   ARCADE MODE ... Classic 13-scene quest   | |
+  | |   BOSS RUSH ..... Creatures only, endless  | |
+  | |   OOPS,ALL TRAPS! Hazards only, endless    | |
+  | | Randomized scene order per playthrough     | |
+  | | Arcade-style attract mode + high scores    | |
+  | |                                            | |
+  | | 28/28 automated scene tests PASS           | |
+  | | Tested on real NTSC SNES hardware          | |
+  | |                                            | |
+  +-+--------------------------------------------+-+
+  |/| FOLDER STRUCTURE                           |/|
+  +-+--------------------------------------------+-+
+  | |                                            | |
+  | | SuperDragonsLairArcade.sfc/                | |
+  | |  |                                         | |
+  | |  +-- FILE_ID.DIZ              (this file)  | |
+  | |  +-- manifest.xml             (36 KB)      | |
+  | |  +-- SuperDragonsLairArcade.sfc  (1 MB)    | |
+  | |  +-- SuperDragonsLairArcade.msu  (471 MB)  | |
+  | |  +-- SuperDragonsLairArcade-0.pcm          | |
+  | |  +-- SuperDragonsLairArcade-1.pcm          | |
+  | |  +-- ...                                   | |
+  | |  +-- SuperDragonsLairArcade-900.pcm        | |
+  | |      (478 PCM audio tracks total)          | |
+  | |                                            | |
+  | | Place ALL files in the same directory.     | |
+  | | .sfc + .msu + .pcm must be together or     | |
+  | | MSU-1 will not initialize.                 | |
+  | |                                            | |
+  +-+--------------------------------------------+-+
+  |/| astrobleem & snesdev0815     February 2026 |/|
+  +-+--------------------------------------------+-+
+
+       "Brave Dirk, save me!"  -Princess Daphne
+
+    .  *  .     (C) 1983 Cinematronics    .  *  .
+
+              -= DAPHNE HAS BEEN SAVED =-

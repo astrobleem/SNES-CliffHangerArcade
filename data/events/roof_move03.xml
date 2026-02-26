@@ -1,0 +1,21 @@
+<chapter name="roof_move03">
+	<timeline>
+		<timestart min="7" second="4" ms="591" frame="12725" />
+		<timeend min="7" second="33" ms="820" frame="13601" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="direction" automacro="action">
+			<timeline>
+				<timestart min="7" second="4" ms="591" frame="12725" />
+				<timeend min="7" second="5" ms="926" frame="12765" />
+			</timeline>
+			<params>
+				<str key="type" value="action" />
+			</params>
+			<result><playchapter name="roof_move04" /></result>
+		</event>
+	</events>
+	<result><playchapter name="roof_death01" /></result>
+</chapter>

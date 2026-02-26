@@ -1,0 +1,4 @@
+gtwy_move01.events:
+    .dw Event.chapter.CLS.PTR, $0000, $00ca, EventResult.playchapter, gtwy_move02, 141, 0
+    .dw Event.checkpoint.CLS.PTR, $0000, $0000, EventResult.none, none, 0, 0
+    .dw 0

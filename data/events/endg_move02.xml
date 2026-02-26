@@ -1,0 +1,26 @@
+<chapter name="endg_move02">
+	<timeline>
+		<timestart min="23" second="7" ms="187" frame="41574" />
+		<timeend min="23" second="10" ms="123" frame="41662" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="checkpoint">
+			<timeline>
+				<timestart min="23" second="7" ms="187" />
+			</timeline>
+		</event>
+		<event type="direction" automacro="feet">
+			<timeline>
+				<timestart min="23" second="7" ms="187" frame="41574" />
+				<timeend min="23" second="8" ms="188" frame="41604" />
+			</timeline>
+			<params>
+				<str key="type" value="feet" />
+			</params>
+			<result><playchapter name="endg_move03" /></result>
+		</event>
+	</events>
+	<result><playchapter name="endg_death01" /></result>
+</chapter>

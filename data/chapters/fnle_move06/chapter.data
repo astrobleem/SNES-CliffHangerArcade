@@ -1,0 +1,3 @@
+fnle_move06.events:
+    .dw Event.chapter.CLS.PTR, $0000, $014d, EventResult.playchapter, fnle_move07, 128, 0
+    .dw 0

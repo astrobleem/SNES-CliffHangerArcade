@@ -1,0 +1,16 @@
+<chapter name="fnle_move01">
+	<timeline>
+		<timestart min="16" second="2" ms="162" frame="28836" />
+		<timeend min="16" second="4" ms="298" frame="28900" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="checkpoint">
+			<timeline>
+				<timestart min="16" second="2" ms="162" />
+			</timeline>
+		</event>
+	</events>
+	<result><playchapter name="fnle_move02" /></result>
+</chapter>

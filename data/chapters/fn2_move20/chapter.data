@@ -1,0 +1,5 @@
+fn2_move20.events:
+    .dw Event.chapter.CLS.PTR, $0000, $009e, EventResult.playchapter, fn2_death01, 106, 0
+    .dw Event.checkpoint.CLS.PTR, $0000, $0000, EventResult.none, none, 0, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $001e, EventResult.playchapter, fn2_move21, JOY_BUTTON_A, 0
+    .dw 0

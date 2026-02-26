@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER hway_move35
+    .dw hway_move35.events
+    .db :hway_move35.events
+
+    DIE

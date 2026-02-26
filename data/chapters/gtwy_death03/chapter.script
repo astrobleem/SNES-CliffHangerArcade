@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER gtwy_death03
+    .dw gtwy_death03.events
+    .db :gtwy_death03.events
+
+    DIE

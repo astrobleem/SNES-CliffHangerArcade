@@ -1,0 +1,26 @@
+<chapter name="hway_move28">
+	<timeline>
+		<timestart min="12" second="30" ms="551" frame="22494" />
+		<timeend min="12" second="30" ms="751" frame="22500" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="checkpoint">
+			<timeline>
+				<timestart min="12" second="30" ms="551" />
+			</timeline>
+		</event>
+		<event type="direction" automacro="direction">
+			<timeline>
+				<timestart min="12" second="30" ms="551" frame="22494" />
+				<timeend min="12" second="31" ms="552" frame="22524" />
+			</timeline>
+			<params>
+				<str key="type" value="up" />
+			</params>
+			<result><playchapter name="hway_move29" /></result>
+		</event>
+	</events>
+	<result><playchapter name="hway_death01" /></result>
+</chapter>

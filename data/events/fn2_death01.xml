@@ -1,0 +1,12 @@
+<chapter name="fn2_death01">
+	<timeline>
+		<timestart min="20" second="40" ms="974" frame="37192" />
+		<timeend min="20" second="51" ms="618" frame="37511" />
+	</timeline>
+	<params>
+		<int key="kills_player" value="1" />
+	</params>
+	<macros />
+	<events />
+	<result><lastcheckpoint /></result>
+</chapter>

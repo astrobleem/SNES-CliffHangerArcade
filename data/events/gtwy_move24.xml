@@ -1,0 +1,21 @@
+<chapter name="gtwy_move24">
+	<timeline>
+		<timestart min="4" second="0" ms="307" frame="7202" />
+		<timeend min="4" second="1" ms="542" frame="7239" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="direction" automacro="action">
+			<timeline>
+				<timestart min="4" second="0" ms="307" frame="7202" />
+				<timeend min="4" second="1" ms="642" frame="7242" />
+			</timeline>
+			<params>
+				<str key="type" value="action" />
+			</params>
+			<result><playchapter name="gtwy_move25" /></result>
+		</event>
+	</events>
+	<result><playchapter name="gtwy_death01" /></result>
+</chapter>

@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER endg_death04
+    .dw endg_death04.events
+    .db :endg_death04.events
+
+    DIE

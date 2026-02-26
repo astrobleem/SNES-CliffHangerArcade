@@ -1,0 +1,4 @@
+hway_move24.events:
+    .dw Event.chapter.CLS.PTR, $0000, $0013, EventResult.playchapter, hway_death01, 195, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $0015, EventResult.playchapter, hway_move25, JOY_DIR_RIGHT, 0
+    .dw 0

@@ -1,0 +1,6 @@
+  SCRIPT logo_intro
+
+  NEW Script.CLS.PTR oopCreateNoPtr title_screen
+
+  DIE
+

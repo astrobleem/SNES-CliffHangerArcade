@@ -1,0 +1,107 @@
+/**
+* down arrow sprite
+*
+* @param a<int, 16bit>  x-pos
+* @param 1<int, 16bit>  y-pos
+*/
+.include "src/object/sprite/down_arrow.h"
+
+.enum zpLen
+  this INSTANCEOF down_arrow_vars
+.ende
+
+.redefine CLASS.ZP_LENGTH zpLen + _sizeof_down_arrow_vars
+.redefine CLASS.FLAGS (OBJECT.FLAGS.Present | OBJECT.FLAGS.Singleton)
+.redefine CLASS.PROPERTIES (OBJECT.PROPERTIES.isSprite | OBJECT.PROPERTIES.isHud)
+.redefine CLASS.IMPLEMENTS interface.dimension
+
+.section "down_arrow"
+
+  METHOD init
+  sep #$20
+  rep #$31
+
+  sta this.endFrame
+
+  lda OBJECT.CALL.ARG.1,s
+  sta.b dimension.position.x + 1
+
+  lda OBJECT.CALL.ARG.2,s
+  sta.b dimension.position.y + 1
+
+  jsr abstract.Iterator.reset
+
+  lda.w #OBJID.Down_arrow
+  jsr abstract.Iterator.each.byId
+  bcc +
+    CALL Down_arrow.getAllocatedPalette.MTD iterator.target
+    sep #$20
+    stx.b animation.palette.start
+    sta.b animation.palette.id
+    tya
+    sta.b animation.palette.startid
+    rep #$31
++
+
+  lda #SPRITE.down_arrow.PTR
+  jsr abstract.Sprite.startAnimation
+
+  sep #$20
+  lda.b #$1
+  sta.b animation.isLooping
+  lda.b #$1
+  sta.b animation.speed
+  rts
+
+  METHOD play
+  jsr abstract.Sprite.playAnimation
+  rep #$31
+  lda.b this.endFrame
+  jsr GLOBAL.checkFrameReached
+  bcc +
+    lda #224
+    sta.b dimension.position.y + 1
+
++ rts
+
+  METHOD reset
+  rep #$31
+  sta this.endFrame
+
+  lda OBJECT.CALL.ARG.1,s
+  sta.b dimension.position.x + 1
+
+  lda OBJECT.CALL.ARG.2,s
+  sta.b dimension.position.y + 1
+
+  ; Re-allocate VRAM/CGRAM (old allocation may be stale after core.vram.init)
+  jsr abstract.Sprite.deallocate
+  sep #$20
+  stz.b animation.tiles.id
+  stz.b animation.palette.id
+  rep #$31
+  jsr abstract.Sprite.allocate
+
+  lda #$ffff
+  sta.b animation.frame.last
+  rts
+
+  METHOD getAllocatedPalette
+  rep #$31
+  ldx.b animation.palette.start
+  lda.b animation.palette.startid
+  and.w #$ff
+  tay
+  lda.b animation.palette.id
+  and.w #$ff
+  rts
+
+  METHOD kill
+  rep #$31
+  jsr abstract.Sprite.deallocate
+  lda #OBJR_kill
+  sta 3,s
+  rts
+
+  CLASS Down_arrow reset getAllocatedPalette
+.ends

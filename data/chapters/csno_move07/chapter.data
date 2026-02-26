@@ -1,0 +1,5 @@
+csno_move07.events:
+    .dw Event.chapter.CLS.PTR, $0000, $001c, EventResult.playchapter, csno_death02, 8, 0
+    .dw Event.checkpoint.CLS.PTR, $0000, $0000, EventResult.none, none, 0, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $0029, EventResult.playchapter, csno_move08, JOY_DIR_LEFT, 0
+    .dw 0

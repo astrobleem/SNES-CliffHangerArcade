@@ -1,0 +1,4 @@
+cstl_start_alive.events:
+    .dw Event.chapter.CLS.PTR, $0000, $0000, EventResult.playchapter, cstl_move01, 28, 0
+    .dw Event.room_transition.CLS.PTR, $0000, $0000, EventResult.none, none, 6, 0
+    .dw 0

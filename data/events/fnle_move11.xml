@@ -1,0 +1,11 @@
+<chapter name="fnle_move11">
+	<timeline>
+		<timestart min="17" second="12" ms="833" frame="30954" />
+		<timeend min="17" second="16" ms="470" frame="31063" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+	</events>
+	<result><playchapter name="fnle_move12" /></result>
+</chapter>

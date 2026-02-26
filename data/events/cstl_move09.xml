@@ -1,0 +1,26 @@
+<chapter name="cstl_move09">
+	<timeline>
+		<timestart min="14" second="25" ms="666" frame="25944" />
+		<timeend min="14" second="27" ms="401" frame="25996" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="checkpoint">
+			<timeline>
+				<timestart min="14" second="25" ms="666" />
+			</timeline>
+		</event>
+		<event type="direction" automacro="direction">
+			<timeline>
+				<timestart min="14" second="25" ms="666" frame="25944" />
+				<timeend min="14" second="26" ms="667" frame="25974" />
+			</timeline>
+			<params>
+				<str key="type" value="left" />
+			</params>
+			<result><playchapter name="cstl_move10" /></result>
+		</event>
+	</events>
+	<result><playchapter name="cstl_death02" /></result>
+</chapter>

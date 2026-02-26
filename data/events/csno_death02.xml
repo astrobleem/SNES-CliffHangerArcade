@@ -1,0 +1,12 @@
+<chapter name="csno_death02">
+	<timeline>
+		<timestart min="1" second="47" ms="241" frame="3214" />
+		<timeend min="1" second="56" ms="783" frame="3500" />
+	</timeline>
+	<params>
+		<int key="kills_player" value="1" />
+	</params>
+	<macros />
+	<events />
+	<result><lastcheckpoint /></result>
+</chapter>

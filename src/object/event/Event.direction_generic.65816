@@ -1,0 +1,250 @@
+/**
+* Directional prompt that can be configured for any input direction or action.
+* Handles left/right/up/down arrows, A-button (hands) and B-button (feet)
+* with the appropriate sprite indicator. Direction mask is passed at runtime.
+*/
+.include "src/object/event/Event.direction_generic.h"
+.include "src/object/sprite/down_arrow.h"
+.include "src/object/sprite/up_arrow.h"
+
+.section "Event.direction_generic"
+
+; expected direction mask is passed as OBJECT.CALL.ARG.5
+; optional immediate-branch flag is passed as OBJECT.CALL.ARG.6 (non-zero)
+
+  METHOD init
+  rep #$31
+
+  jsr Event.template.initCommon
+
+  lda #oopCreateNoPtr
+  sta this.sprite+2
+
+  lda OBJECT.CALL.ARG.5,s
+  sta this.direction
+
+  lda #(JOY_DIR_LEFT | JOY_DIR_RIGHT)
+  eor this.direction
+  sta this.wrongMask
+
+  ; Build input mask: hands (A) and feet (B) each accept only their own button
+  lda this.direction
+  cmp #JOY_BUTTON_A
+  bne _not_hands_mask
+    lda #JOY_BUTTON_A
+    bra _store_input_mask
+_not_hands_mask:
+  cmp #JOY_BUTTON_B
+  bne _not_feet_mask
+    lda #JOY_BUTTON_B
+    bra _store_input_mask
+_not_feet_mask:
+  ; directional events: inputMask = direction
+_store_input_mask:
+  sta this.inputMask
+
+  lda OBJECT.CALL.ARG.6,s
+  and #$0001
+  sta this.branchImmediate
+  stz this.hasTriggered
+
+  ; Check hide-arrow flag (bit 1 of arg1 = death-trap direction)
+  lda OBJECT.CALL.ARG.6,s
+  and #$0002
+  beq _createArrows
+  jmp ++++              ; skip arrow creation, go to audio
+_createArrows:
+
+  ;choose assets and positioning based on direction mask
+  lda this.direction
+  bne _direction_hasDir
+    jmp ++++                  ;skip arrow creation if direction=0 (attract mode)
+_direction_hasDir:
+  cmp #JOY_BUTTON_A
+  bne _not_hands
+    ;hands action — show sword icon centered on screen (placeholder for hands icon)
+    NEW Sword_icon.CLS.PTR this.sprite 120 300
+    lda #120
+    sta this.scoreX
+    lda #80
+    sta this.scoreY
+    lda event.endFrame
+    CALL Sword_icon.reset.MTD this.sprite 120 300
+    jmp ++++
+_not_hands:
+  cmp #JOY_BUTTON_B
+  bne _not_feet
+    ;feet action — show sword icon centered on screen (placeholder for feet icon)
+    NEW Sword_icon.CLS.PTR this.sprite 120 300
+    lda #120
+    sta this.scoreX
+    lda #80
+    sta this.scoreY
+    lda event.endFrame
+    CALL Sword_icon.reset.MTD this.sprite 120 300
+    jmp ++++
+_not_feet:
+  cmp #JOY_DIR_LEFT
+  beq +
+  cmp #JOY_DIR_DOWN
+  bne _notDown
+    jmp ++
+_notDown:
+  cmp #JOY_DIR_UP
+  bne _skip_up_check
+    jmp +++
+_skip_up_check:
+        NEW Right_arrow.CLS.PTR this.sprite 160 300
+        lda #160
+        sta this.scoreX
+        lda #80
+        sta this.scoreY
+        lda event.endFrame
+        CALL Right_arrow.reset.MTD this.sprite 160 300
+        jmp ++++
+  ;left arrow assets
++ NEW Left_arrow.CLS.PTR this.sprite 60 300
+  lda #60
+  sta this.scoreX
+  lda #80
+  sta this.scoreY
+  lda event.endFrame
+  CALL Left_arrow.reset.MTD this.sprite 60 300
+  jmp ++++
+
+  ;down arrow assets
+++ NEW Down_arrow.CLS.PTR this.sprite 110 300
+  lda #110
+  sta this.scoreX
+  lda #156
+  sta this.scoreY
+  lda event.endFrame
+  CALL Down_arrow.reset.MTD this.sprite 110 300
+  jmp ++++
+
+  ;up arrow assets
++++ NEW Up_arrow.CLS.PTR this.sprite 110 300
+  lda #110
+  sta this.scoreX
+  lda #36
+  sta this.scoreY
+  lda event.endFrame
+  CALL Up_arrow.reset.MTD this.sprite 110 300
+
+++++
+  NEW Spc.CLS.PTR this.audio
+  rts
+
+  METHOD play
+  rep #$31
+
+  jsr Event.template.waitTimeline
+  bcs _in_timeline
+    ; Hide arrow sprite when event window expires (prevents stale arrows
+    ; from sequential direction windows within the same chapter)
+    lda event.age
+    beq _play_done              ; never activated, nothing to hide
+    lda this.sprite+2
+    cmp #oopCreateNoPtr
+    beq _play_done              ; no sprite or already hidden
+      lda #0
+      CALL Right_arrow.reset.MTD this.sprite 0 300
+      lda #oopCreateNoPtr
+      sta this.sprite+2          ; prevent repeated hide calls
+_play_done:
+    rts
+_in_timeline:
+
+  ; First active frame: show sprite + play sound
+  lda event.age
+  cmp #1
+  bne _past_first_frame
+    lda this.sprite+2
+    cmp #oopCreateNoPtr
+    beq _no_show
+      pei (this.scoreY)
+      pei (this.scoreX)
+      lda event.endFrame
+      ldx #this.sprite
+      ldy #Right_arrow.reset.MTD
+      jsr core.object.call
+      pla
+      pla
+      lda.w #SAMPLE.0.TURN
+      CALL Spc.SpcPlaySoundEffect.MTD this.audio
+_no_show:
+_past_first_frame:
+
+  ;attract mode: direction=0 means check START button
+  lda this.direction
+  bne _direction_normalCheck
+    ldx #INPUT.DEVICE.ID.0
+    jsr core.input.get.trigger
+    and.w #$FFF0
+    beq _direction_done
+      ;any button pressed in attract mode: trigger result (no score)
+      jsr abstract.Event.triggerResult
+      sep #$20
+      lda #1
+      sta this.hasTriggered
+      rep #$20
+      rts
+
+_direction_normalCheck:
+  ;check if player pressed the expected direction
+  ldx #INPUT.DEVICE.ID.0
+  jsr core.input.get.trigger
+  and this.inputMask
+  bne _direction_correctPress
+  jmp _direction_done
+_direction_correctPress:
+      lda this.hasTriggered
+      and #$00FF                ;hasTriggered is db, mask off stale high byte
+      bne _direction_done
+
+      jsr core.input.get.trigger
+      and this.inputMask
+      beq _score_default
+        lda event.age
+        cmp #EVENT.BONUS.EXTRA.TIMEOUT
+        bcs _score_default
+          lda #PLAYER.BONUS.EXTRA
+          bra _spawn_score
+_score_default:
+      lda #PLAYER.BONUS.DEFAULT
+_spawn_score:
+        NEW Sprite.score.CLS.PTR oopCreateNoPtr this.scoreX this.scoreY
+
+        ; Hide sprite (visual feedback that input was accepted)
+        ; Don't kill — singletons must stay alive to avoid slot doubling
+        lda this.sprite+2
+        cmp #oopCreateNoPtr
+        beq _no_hide_sprite
+          lda #0
+          CALL Right_arrow.reset.MTD this.sprite 0 300
+_no_hide_sprite:
+
+        ; Trigger immediately — chapter transition kills all events
+        jsr abstract.Event.triggerResult
+        sep #$20
+        lda #1
+        sta this.hasTriggered
+        rep #$20
+        rts
+
+_direction_done:
+  rts
+
+  METHOD kill
+  rep #$31
+  ; Hide sprite singleton before dying (move offscreen so it doesn't linger)
+  lda this.sprite+2
+  cmp #oopCreateNoPtr
+  beq _kill_noSprite
+    lda #0
+    CALL Right_arrow.reset.MTD this.sprite 0 300
+_kill_noSprite:
+  jmp Event.template.kill
+
+  CLASS Event.direction_generic
+.ends

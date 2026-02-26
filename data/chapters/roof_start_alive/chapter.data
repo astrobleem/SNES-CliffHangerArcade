@@ -1,0 +1,4 @@
+roof_start_alive.events:
+    .dw Event.chapter.CLS.PTR, $0000, $0000, EventResult.playchapter, roof_move01, 264, 0
+    .dw Event.room_transition.CLS.PTR, $0000, $0000, EventResult.none, none, 6, 0
+    .dw 0

@@ -1,0 +1,11 @@
+<chapter name="hway_move10">
+	<timeline>
+		<timestart min="12" second="10" ms="631" frame="21897" />
+		<timeend min="12" second="14" ms="201" frame="22004" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+	</events>
+	<result><playchapter name="hway_move11" /></result>
+</chapter>

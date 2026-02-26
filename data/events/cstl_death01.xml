@@ -1,0 +1,12 @@
+<chapter name="cstl_death01">
+	<timeline>
+		<timestart min="14" second="41" ms="648" frame="26423" />
+		<timeend min="14" second="51" ms="58" frame="26705" />
+	</timeline>
+	<params>
+		<int key="kills_player" value="1" />
+	</params>
+	<macros />
+	<events />
+	<result><lastcheckpoint /></result>
+</chapter>

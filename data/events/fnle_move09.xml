@@ -1,0 +1,21 @@
+<chapter name="fnle_move09">
+	<timeline>
+		<timestart min="17" second="8" ms="829" frame="30834" />
+		<timeend min="17" second="10" ms="697" frame="30890" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="direction" automacro="direction">
+			<timeline>
+				<timestart min="17" second="8" ms="829" frame="30834" />
+				<timeend min="17" second="9" ms="830" frame="30864" />
+			</timeline>
+			<params>
+				<str key="type" value="left" />
+			</params>
+			<result><playchapter name="fnle_move10" /></result>
+		</event>
+	</events>
+	<result><playchapter name="fnle_death02" /></result>
+</chapter>

@@ -1,0 +1,26 @@
+<chapter name="fn2_move14">
+	<timeline>
+		<timestart min="18" second="55" ms="469" frame="34030" />
+		<timeend min="18" second="57" ms="804" frame="34100" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="checkpoint">
+			<timeline>
+				<timestart min="18" second="55" ms="469" />
+			</timeline>
+		</event>
+		<event type="direction" automacro="direction">
+			<timeline>
+				<timestart min="18" second="55" ms="469" frame="34030" />
+				<timeend min="18" second="56" ms="470" frame="34060" />
+			</timeline>
+			<params>
+				<str key="type" value="left" />
+			</params>
+			<result><playchapter name="fn2_move15" /></result>
+		</event>
+	</events>
+	<result><playchapter name="fn2_death01" /></result>
+</chapter>

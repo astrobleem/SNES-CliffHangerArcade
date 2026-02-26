@@ -1,0 +1,16 @@
+<chapter name="fn2_move01">
+	<timeline>
+		<timestart min="17" second="16" ms="470" frame="31063" />
+		<timeend min="18" second="43" ms="390" frame="33668" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="checkpoint">
+			<timeline>
+				<timestart min="17" second="16" ms="470" />
+			</timeline>
+		</event>
+	</events>
+	<result><playchapter name="fn2_move02" /></result>
+</chapter>

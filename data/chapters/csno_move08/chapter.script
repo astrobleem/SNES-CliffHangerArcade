@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER csno_move08
+    .dw csno_move08.events
+    .db :csno_move08.events
+
+    DIE

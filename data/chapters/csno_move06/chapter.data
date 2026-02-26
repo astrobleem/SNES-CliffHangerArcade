@@ -1,0 +1,3 @@
+csno_move06.events:
+    .dw Event.chapter.CLS.PTR, $0000, $008e, EventResult.playchapter, csno_move07, 7, 0
+    .dw 0

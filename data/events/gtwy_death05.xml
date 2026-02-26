@@ -1,0 +1,12 @@
+<chapter name="gtwy_death05">
+	<timeline>
+		<timestart min="6" second="32" ms="159" frame="11753" />
+		<timeend min="6" second="47" ms="574" frame="12215" />
+	</timeline>
+	<params>
+		<int key="kills_player" value="1" />
+	</params>
+	<macros />
+	<events />
+	<result><lastcheckpoint /></result>
+</chapter>

@@ -1,0 +1,4 @@
+csno_move03.events:
+    .dw Event.chapter.CLS.PTR, $0000, $0081, EventResult.playchapter, csno_death01, 4, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $0031, EventResult.playchapter, csno_move04, JOY_BUTTON_B, 0
+    .dw 0

@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER cstl_move05
+    .dw cstl_move05.events
+    .db :cstl_move05.events
+
+    DIE

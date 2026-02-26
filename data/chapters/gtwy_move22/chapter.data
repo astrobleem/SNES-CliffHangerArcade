@@ -1,0 +1,5 @@
+gtwy_move22.events:
+    .dw Event.chapter.CLS.PTR, $0000, $0064, EventResult.playchapter, gtwy_death04, 162, 0
+    .dw Event.checkpoint.CLS.PTR, $0000, $0000, EventResult.none, none, 0, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $0028, EventResult.playchapter, gtwy_move23, JOY_DIR_DOWN, 0
+    .dw 0

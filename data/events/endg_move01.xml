@@ -1,0 +1,16 @@
+<chapter name="endg_move01">
+	<timeline>
+		<timestart min="23" second="7" ms="621" frame="41587" />
+		<timeend min="23" second="7" ms="654" frame="41588" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="checkpoint">
+			<timeline>
+				<timestart min="23" second="7" ms="621" />
+			</timeline>
+		</event>
+	</events>
+	<result><playchapter name="endg_move02" /></result>
+</chapter>

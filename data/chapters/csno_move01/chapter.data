@@ -1,0 +1,4 @@
+csno_move01.events:
+    .dw Event.chapter.CLS.PTR, $0000, $0081, EventResult.playchapter, csno_move02, 2, 0
+    .dw Event.checkpoint.CLS.PTR, $0000, $0000, EventResult.none, none, 0, 0
+    .dw 0

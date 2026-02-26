@@ -1,0 +1,4 @@
+hway_move01.events:
+    .dw Event.chapter.CLS.PTR, $0000, $0138, EventResult.playchapter, hway_move02, 172, 0
+    .dw Event.checkpoint.CLS.PTR, $0000, $0000, EventResult.none, none, 0, 0
+    .dw 0

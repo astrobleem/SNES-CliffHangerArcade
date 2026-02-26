@@ -1,0 +1,26 @@
+<chapter name="fnle_move12">
+	<timeline>
+		<timestart min="17" second="16" ms="470" frame="31063" />
+		<timeend min="17" second="21" ms="441" frame="31212" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="checkpoint">
+			<timeline>
+				<timestart min="17" second="16" ms="470" />
+			</timeline>
+		</event>
+		<event type="direction" automacro="direction">
+			<timeline>
+				<timestart min="17" second="16" ms="470" frame="31063" />
+				<timeend min="17" second="17" ms="471" frame="31093" />
+			</timeline>
+			<params>
+				<str key="type" value="up" />
+			</params>
+			<result><playchapter name="scene_router" /></result>
+		</event>
+	</events>
+	<result><playchapter name="fnle_death04" /></result>
+</chapter>

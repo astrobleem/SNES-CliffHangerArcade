@@ -1,0 +1,11 @@
+<chapter name="csno_move06">
+	<timeline>
+		<timestart min="1" second="15" ms="943" frame="2276" />
+		<timeend min="1" second="20" ms="714" frame="2419" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+	</events>
+	<result><playchapter name="csno_move07" /></result>
+</chapter>

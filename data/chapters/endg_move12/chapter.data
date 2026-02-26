@@ -1,0 +1,3 @@
+endg_move12.events:
+    .dw Event.chapter.CLS.PTR, $0000, $0062, EventResult.playchapter, endg_move13, 45, 0
+    .dw 0

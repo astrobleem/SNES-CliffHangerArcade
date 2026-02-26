@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER csno_death01
+    .dw csno_death01.events
+    .db :csno_death01.events
+
+    DIE

@@ -1,0 +1,26 @@
+<chapter name="gtwy_move22">
+	<timeline>
+		<timestart min="3" second="54" ms="67" frame="7015" />
+		<timeend min="3" second="57" ms="371" frame="7114" />
+	</timeline>
+	<params />
+	<macros />
+	<events>
+		<event type="checkpoint">
+			<timeline>
+				<timestart min="3" second="54" ms="67" />
+			</timeline>
+		</event>
+		<event type="direction" automacro="direction">
+			<timeline>
+				<timestart min="3" second="54" ms="67" frame="7015" />
+				<timeend min="3" second="55" ms="402" frame="7055" />
+			</timeline>
+			<params>
+				<str key="type" value="down" />
+			</params>
+			<result><playchapter name="gtwy_move23" /></result>
+		</event>
+	</events>
+	<result><playchapter name="gtwy_death04" /></result>
+</chapter>

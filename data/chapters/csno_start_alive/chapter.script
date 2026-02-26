@@ -1,0 +1,9 @@
+/**
+* this file has been auto-generated.
+*/
+
+    CHAPTER csno_start_alive
+    .dw csno_start_alive.events
+    .db :csno_start_alive.events
+
+    DIE

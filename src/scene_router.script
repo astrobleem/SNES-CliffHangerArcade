@@ -1,0 +1,96 @@
+  SCRIPT scene_router
+.ACCU 16
+.INDEX 16
+
+  ;--- Full cleanup between scenes (matches level1 entry script) ---
+  ;Save HDMA channel state before reset (VideoMask must survive scene transitions)
+  sep #$20
+  lda.w GLOBAL.HDMA.CHANNEL.ENABLE
+  pha
+  rep #$31
+
+  ;Stop HDMA hardware and flush DMA queue (prevents stale DMA on real SD2SNES)
+  jsr core.dma.resetHardware
+
+  ;Kill stale sprite singletons (arrows/sword hold stale VRAM/CGRAM allocs)
+  lda.w #OBJECT.PROPERTIES.isSprite
+  jsr abstract.Iterator.kill.byProperties
+
+  ;DON'T kill HDMA objects — VideoMask must persist across scene_router transitions.
+  ;Msu1 singleton survives (no isHdma property), so its VideoMask hash pointer stays valid.
+  ;Entry scripts (level1) kill Msu1 explicitly, which properly
+  ;chains to VideoMask.kill via Msu1.kill.
+
+  ;DON'T reset VRAM allocation table — Msu1's framebuffers survive and hold valid
+  ;VRAM allocations. Resetting the table orphans those allocations, causing new sprites
+  ;to overlap Msu1's VRAM (competing DMA transfers → corruption after many scenes).
+  ;Sprite VRAM is already freed by kill.byProperties(isSprite) above.
+  ;Clear CGRAM colors to black for clean visual transition.
+  jsr core.cgram.clear
+
+  ;Restore HDMA channel enable (VideoMask's HDMA resumes on next NMI)
+  sep #$20
+  pla
+  sta.w GLOBAL.HDMA.CHANNEL.ENABLE
+  rep #$31
+
+  ;--- Linear 8-scene progression (Cliff Hanger) ---
+  lda.w GLOBAL.sceneRow
+  cmp #8
+  bcc _scene_router.validRow
+    ;all 8 scenes complete -> victory
+    NEW Script.CLS.PTR oopCreateNoPtr score_entry
+    DIE
+
+_scene_router.validRow:
+  ;index into linear scene table (word entries: row * 2)
+  asl a
+  tax
+  lda.l _scene_router.sceneTable,x
+
+  ;set scene name for pause screen from parallel byte table
+  pha
+  txa
+  lsr a                          ;word index -> byte index
+  tax
+  sep #$20
+  lda.l _scene_router.sceneNameTable,x
+  sta.w GLOBAL.currentScene
+  rep #$20
+  pla
+
+  ;increment row for next invocation
+  pha
+  lda.w GLOBAL.sceneRow
+  inc a
+  sta.w GLOBAL.sceneRow
+  pla
+
+  ;create the target scene script
+  pha
+  NEW Script.CLS.PTR oopCreateNoPtr
+  pla
+  DIE
+
+;--- Linear scene table: 8 scenes in order ---
+_scene_router.sceneTable:
+  .dw csno_start_alive            ;row 0: Casino Heist
+  .dw gtwy_start_alive            ;row 1: The Getaway
+  .dw roof_start_alive            ;row 2: Rooftops
+  .dw hway_start_alive            ;row 3: Highway
+  .dw cstl_start_alive            ;row 4: The Castle Battle
+  .dw fnle_start_alive            ;row 5: Finale
+  .dw fn2_start_alive             ;row 6: Finale II
+  .dw endg_start_alive            ;row 7: Ending
+
+;--- Scene name indices (T_sceneName index, 1-based) ---
+; Each byte corresponds to a row in sceneTable above.
+_scene_router.sceneNameTable:
+  .db 1                           ;row 0: Casino Heist
+  .db 2                           ;row 1: The Getaway
+  .db 3                           ;row 2: Rooftops
+  .db 4                           ;row 3: Highway
+  .db 5                           ;row 4: The Castle Battle
+  .db 6                           ;row 5: Finale
+  .db 7                           ;row 6: Finale II
+  .db 8                           ;row 7: Ending
