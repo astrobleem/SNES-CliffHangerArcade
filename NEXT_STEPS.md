@@ -66,11 +66,11 @@ replacement. Backgrounds are 256x224 PNG images in 4BPP SNES format.
 | Directory | Purpose | Notes |
 |-----------|---------|-------|
 | `data/backgrounds/titlescreen.gfx_bg/` | Title screen background | Main menu backdrop |
-| `data/backgrounds/logo.gfx_bg/` | Logo/intro animation | Shown during boot |
-| `data/backgrounds/msu1.gfx_bg/` | MSU-1 splash screen | Shown while MSU-1 initializes |
+| ~~`data/backgrounds/logo.gfx_bg/`~~ | ~~Logo/intro animation~~ | **DONE** |
+| ~~`data/backgrounds/msu1.gfx_bg/`~~ | ~~MSU-1 splash screen~~ | **DONE** |
 | `data/backgrounds/losers.gfx_bg/` | Credits/losers screen | Shown after MSU-1 init |
-| `data/backgrounds/hiscore.gfx_bg/` | High score display | Hall of fame background |
-| `data/backgrounds/scoreentry.gfx_bg/` | Score entry screen | Name entry after game over |
+| ~~`data/backgrounds/hiscore.gfx_bg/`~~ | ~~High score display~~ | **DONE** |
+| ~~`data/backgrounds/scoreentry.gfx_bg/`~~ | ~~Score entry screen~~ | **DONE** |
 | `data/backgrounds/levelcomplete.*.gfx_bg/` | Level complete screens (3) | Between-scene celebration |
 | `data/backgrounds/hud.gfx_directcolor/` | HUD overlay (8BPP) | In-game score/lives display |
 
@@ -84,25 +84,16 @@ replacement. Backgrounds are 256x224 PNG images in 4BPP SNES format.
 
 ## Priority 3: Sprite Assets
 
-### Action Icon Sprites (Required)
+### ~~Action Icon Sprites~~ — **DONE**
 
-Cliff Hanger uses two action prompts instead of Dragon's Lair's single sword:
+Hands and feet action sprites are implemented and wired up:
 
 | Sprite | Directory | Purpose |
 |--------|-----------|---------|
-| **Hands icon** | `data/sprites/hands.gfx_sprite/` | Shown when player must press A (hands) |
-| **Feet icon** | `data/sprites/feet.gfx_sprite/` | Shown when player must press B (feet) |
+| ~~**Hands icon**~~ | ~~`data/sprites/hands.gfx_sprite/`~~ | **DONE** — `Hands_icon` class, A button |
+| ~~**Feet icon**~~ | ~~`data/sprites/feet.gfx_sprite/`~~ | **DONE** — `Feet_icon` class, B button |
 
-Currently, `Event.direction_generic.65816` uses `Sword_icon` as a placeholder for both.
-After creating these sprites:
-1. Create the sprite directories with animation frames (same format as `sword.gfx_sprite/`)
-2. Register the new sprite classes in `src/core/oop.h` (add OBJID entries)
-3. Create sprite class files (`.65816` + `.h`) following the `Sword_icon` pattern
-4. Update `Event.direction_generic.65816` to use `Hands_icon` for JOY_BUTTON_A
-   and `Feet_icon` for JOY_BUTTON_B
-
-**Reference**: Look at `data/sprites/sword.gfx_sprite/` and
-`src/object/sprite/Sword_icon.65816` for the exact pattern.
+`Event.direction_generic.65816` uses `Hands_icon` for JOY_BUTTON_A and `Feet_icon` for JOY_BUTTON_B.
 
 ### Arrow Sprites (Can Reuse)
 
@@ -116,12 +107,12 @@ can be reused as-is from Dragon's Lair, or replaced with Cliff Hanger-themed ver
 | `life_dirk.gfx_sprite` | **Replace** | Dirk life counter icon → Cliff Hanger protagonist |
 | `life_counter.gfx_sprite` | Keep or replace | Numeric life counter |
 | `points.*.gfx_sprite` | Keep or replace | Score popup sprites |
-| `shield.gfx_sprite` | **Remove or replace** | DL-specific (Dirk's shield) |
+| ~~`shield.gfx_sprite`~~ | **DONE** | Renamed to `feet.gfx_sprite`, wired as `Feet_icon` |
 | `steering_wheel.*.gfx_sprite` | **Remove** | RoadBlaster leftover, not used in CH |
 | `dashboard.gfx_sprite` | **Remove** | RoadBlaster leftover |
 | `bang.gfx_sprite` | Keep or replace | Explosion/impact effect |
 | `super.gfx_sprite` | Keep or replace | "SUPER" bonus text |
-| `sword.gfx_sprite` | **Replace** → hands/feet | See action icons above |
+| ~~`sword.gfx_sprite`~~ | **DONE** | Renamed to `hands.gfx_sprite`, wired as `Hands_icon` |
 
 ---
 

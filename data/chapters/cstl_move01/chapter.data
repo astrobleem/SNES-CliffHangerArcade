@@ -1,4 +1,4 @@
 cstl_move01.events:
-    .dw Event.chapter.CLS.PTR, $0000, $0000, EventResult.playchapter, cstl_move02, 17, 0
+    .dw Event.chapter.CLS.PTR, $0000, $0001, EventResult.playchapter, cstl_move02, 17, 0
     .dw Event.checkpoint.CLS.PTR, $0000, $0000, EventResult.none, none, 0, 0
     .dw 0

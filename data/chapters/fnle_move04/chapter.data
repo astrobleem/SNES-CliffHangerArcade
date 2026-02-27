@@ -1,4 +1,4 @@
 fnle_move04.events:
-    .dw Event.chapter.CLS.PTR, $0000, $01dd, EventResult.playchapter, fnle_death01, 126, 0
-    .dw Event.direction_generic.CLS.PTR, $0000, $001e, EventResult.playchapter, fnle_move05, JOY_DIR_LEFT, 0
+    .dw Event.chapter.CLS.PTR, $0000, $017d, EventResult.playchapter, fnle_death01, 126, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $0018, EventResult.playchapter, fnle_move05, JOY_DIR_LEFT, 0
     .dw 0

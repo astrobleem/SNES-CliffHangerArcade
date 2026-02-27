@@ -1,3 +1,3 @@
 cstl_death02.events:
-    .dw Event.chapter.CLS.PTR, $0000, $0121, EventResult.lastcheckpoint, none, 16, 0
+    .dw Event.chapter.CLS.PTR, $0000, $00e7, EventResult.lastcheckpoint, none, 16, 0
     .dw 0

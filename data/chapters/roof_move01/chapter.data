@@ -1,4 +1,4 @@
 roof_move01.events:
-    .dw Event.chapter.CLS.PTR, $0000, $00f3, EventResult.playchapter, roof_move02, 228, 0
+    .dw Event.chapter.CLS.PTR, $0000, $00c2, EventResult.playchapter, roof_move02, 228, 0
     .dw Event.checkpoint.CLS.PTR, $0000, $0000, EventResult.none, none, 0, 0
     .dw 0

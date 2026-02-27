@@ -1,4 +1,4 @@
 fnle_move01.events:
-    .dw Event.chapter.CLS.PTR, $0000, $0041, EventResult.playchapter, fnle_move02, 123, 0
+    .dw Event.chapter.CLS.PTR, $0000, $0033, EventResult.playchapter, fnle_move02, 123, 0
     .dw Event.checkpoint.CLS.PTR, $0000, $0000, EventResult.none, none, 0, 0
     .dw 0

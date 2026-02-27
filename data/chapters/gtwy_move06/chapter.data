@@ -1,3 +1,3 @@
 gtwy_move06.events:
-    .dw Event.chapter.CLS.PTR, $0000, $0028, EventResult.playchapter, gtwy_move07, 146, 0
+    .dw Event.chapter.CLS.PTR, $0000, $0020, EventResult.playchapter, gtwy_move07, 146, 0
     .dw 0

@@ -1,5 +1,5 @@
 csno_move02.events:
-    .dw Event.chapter.CLS.PTR, $0000, $003e, EventResult.playchapter, csno_death01, 3, 0
+    .dw Event.chapter.CLS.PTR, $0000, $0032, EventResult.playchapter, csno_death01, 3, 0
     .dw Event.checkpoint.CLS.PTR, $0000, $0000, EventResult.none, none, 0, 0
-    .dw Event.direction_generic.CLS.PTR, $0000, $003b, EventResult.playchapter, csno_move03, JOY_BUTTON_B, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $002f, EventResult.playchapter, csno_move03, JOY_BUTTON_B, 0
     .dw 0

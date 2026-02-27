@@ -1,3 +1,3 @@
 hway_move20.events:
-    .dw Event.chapter.CLS.PTR, $0000, $000e, EventResult.playchapter, hway_move21, 191, 0
+    .dw Event.chapter.CLS.PTR, $0000, $000b, EventResult.playchapter, hway_move21, 191, 0
     .dw 0

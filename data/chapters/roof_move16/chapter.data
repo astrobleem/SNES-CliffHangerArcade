@@ -1,4 +1,4 @@
 roof_move16.events:
-    .dw Event.chapter.CLS.PTR, $0000, $00c4, EventResult.playchapter, roof_death03, 243, 0
-    .dw Event.direction_generic.CLS.PTR, $0000, $0027, EventResult.playchapter, roof_move17, JOY_DIR_LEFT, 0
+    .dw Event.chapter.CLS.PTR, $0000, $009d, EventResult.playchapter, roof_death03, 243, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $0020, EventResult.playchapter, roof_move17, JOY_DIR_LEFT, 0
     .dw 0

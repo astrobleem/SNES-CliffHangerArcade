@@ -1,5 +1,5 @@
 roof_move02.events:
-    .dw Event.chapter.CLS.PTR, $0000, $0016, EventResult.playchapter, roof_death01, 229, 0
+    .dw Event.chapter.CLS.PTR, $0000, $0012, EventResult.playchapter, roof_death01, 229, 0
     .dw Event.checkpoint.CLS.PTR, $0000, $0000, EventResult.none, none, 0, 0
-    .dw Event.direction_generic.CLS.PTR, $0000, $0027, EventResult.playchapter, roof_move03, JOY_BUTTON_A, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $0020, EventResult.playchapter, roof_move03, JOY_BUTTON_A, 0
     .dw 0
