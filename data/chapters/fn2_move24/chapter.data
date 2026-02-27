@@ -1,4 +1,4 @@
 fn2_move24.events:
-    .dw Event.chapter.CLS.PTR, $0000, $000f, EventResult.playchapter, fn2_death01, 110, 0
-    .dw Event.direction_generic.CLS.PTR, $0000, $001e, EventResult.playchapter, fn2_move25, JOY_BUTTON_B, 0
+    .dw Event.chapter.CLS.PTR, $0000, $000d, EventResult.playchapter, fn2_death01, 110, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $0018, EventResult.playchapter, fn2_move25, JOY_BUTTON_B, 0
     .dw 0

@@ -1,3 +1,3 @@
 fnle_death02.events:
-    .dw Event.chapter.CLS.PTR, $0000, $017c, EventResult.lastcheckpoint, none, 120, 0
+    .dw Event.chapter.CLS.PTR, $0000, $0130, EventResult.lastcheckpoint, none, 120, 0
     .dw 0

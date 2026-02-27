@@ -1,4 +1,4 @@
 cstl_move06.events:
-    .dw Event.chapter.CLS.PTR, $0000, $0010, EventResult.playchapter, cstl_death01, 22, 0
-    .dw Event.direction_generic.CLS.PTR, $0000, $001e, EventResult.playchapter, cstl_move07, JOY_BUTTON_B, 0
+    .dw Event.chapter.CLS.PTR, $0000, $000d, EventResult.playchapter, cstl_death01, 22, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $0018, EventResult.playchapter, cstl_move07, JOY_BUTTON_B, 0
     .dw 0

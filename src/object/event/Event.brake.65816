@@ -12,9 +12,9 @@
   jsr Event.template.initCommon
 
   lda event.endFrame
-  NEW Shield_icon.CLS.PTR this.sprite 112 80
-  lda event.endFrame  
-  CALL Shield_icon.reset.MTD this.sprite 112 80
+  NEW Feet_icon.CLS.PTR this.sprite 112 80
+  lda event.endFrame
+  CALL Feet_icon.reset.MTD this.sprite 112 80
   
   NEW Spc.CLS.PTR this.audio
   lda.w #SAMPLE.0.BRAKE

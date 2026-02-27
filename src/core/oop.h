@@ -147,8 +147,8 @@ OBJID.Right_arrow db
 OBJID.Left_arrow db
 OBJID.Up_arrow db
 OBJID.Down_arrow db
-OBJID.Sword_icon db
-OBJID.Shield_icon db
+OBJID.Hands_icon db
+OBJID.Feet_icon db
 ;OBJID.Dashboard db
 OBJID.VideoMask db
 OBJID.SteeringWheel db
@@ -242,8 +242,8 @@ OopClassLut:
         PTRLONG OopClassLut Left_arrow.CLS
         PTRLONG OopClassLut Up_arrow.CLS
         PTRLONG OopClassLut Down_arrow.CLS
-        PTRLONG OopClassLut Sword_icon.CLS
-        PTRLONG OopClassLut Shield_icon.CLS
+        PTRLONG OopClassLut Hands_icon.CLS
+        PTRLONG OopClassLut Feet_icon.CLS
         PTRLONG OopClassLut VideoMask.CLS
         PTRLONG OopClassLut SteeringWheel.CLS
         PTRLONG OopClassLut Background.generic.CLS

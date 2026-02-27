@@ -1369,12 +1369,12 @@ sta.w ((\@*2)~$ff)&$ff,x
 
 ;helper macros to reduce script boilerplate for common event patterns
 .macro EVENT_ACTION_PRIMARY startframe endframe result target
-  ; Dirk's signature sword/interaction cue (button A)
+  ; Hands action cue (button A)
   EVENT Event.accelerate \1 \2 \3 \4
 .endm
 
 .macro EVENT_ACTION_DEFEND startframe endframe result target
-  ; Dirk's defensive/duck cue (button B)
+  ; Feet action cue (button B)
   EVENT Event.brake \1 \2 \3 \4
 .endm
 

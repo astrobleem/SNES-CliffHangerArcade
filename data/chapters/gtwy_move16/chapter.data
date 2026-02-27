@@ -1,4 +1,4 @@
 gtwy_move16.events:
-    .dw Event.chapter.CLS.PTR, $0000, $0041, EventResult.playchapter, gtwy_death03, 156, 0
-    .dw Event.direction_generic.CLS.PTR, $0000, $0029, EventResult.playchapter, gtwy_move17, JOY_DIR_LEFT, 0
+    .dw Event.chapter.CLS.PTR, $0000, $0033, EventResult.playchapter, gtwy_death03, 156, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $0020, EventResult.playchapter, gtwy_move17, JOY_DIR_LEFT, 0
     .dw 0

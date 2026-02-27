@@ -1,4 +1,4 @@
 cstl_move11.events:
-    .dw Event.chapter.CLS.PTR, $0000, $00f0, EventResult.playchapter, cstl_death02, 27, 0
-    .dw Event.direction_generic.CLS.PTR, $0000, $001e, EventResult.playchapter, scene_router, JOY_DIR_RIGHT, 0
+    .dw Event.chapter.CLS.PTR, $0000, $00c1, EventResult.playchapter, cstl_death02, 27, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $0018, EventResult.playchapter, scene_router, JOY_DIR_RIGHT, 0
     .dw 0

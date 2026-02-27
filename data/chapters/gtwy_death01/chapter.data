@@ -1,3 +1,3 @@
 gtwy_death01.events:
-    .dw Event.chapter.CLS.PTR, $0000, $0121, EventResult.lastcheckpoint, none, 136, 0
+    .dw Event.chapter.CLS.PTR, $0000, $00e7, EventResult.lastcheckpoint, none, 136, 0
     .dw 0

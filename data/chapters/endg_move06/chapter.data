@@ -1,5 +1,5 @@
 endg_move06.events:
-    .dw Event.chapter.CLS.PTR, $0000, $0098, EventResult.playchapter, endg_death02, 39, 0
+    .dw Event.chapter.CLS.PTR, $0000, $0079, EventResult.playchapter, endg_death02, 39, 0
     .dw Event.checkpoint.CLS.PTR, $0000, $0000, EventResult.none, none, 0, 0
-    .dw Event.direction_generic.CLS.PTR, $0000, $001e, EventResult.playchapter, endg_move07, JOY_DIR_UP, 0
+    .dw Event.direction_generic.CLS.PTR, $0000, $0018, EventResult.playchapter, endg_move07, JOY_DIR_UP, 0
     .dw 0
