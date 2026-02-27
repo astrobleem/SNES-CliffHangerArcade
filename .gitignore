@@ -12,9 +12,17 @@ distribution/*.zip
 cliff/
 data/laserdisc/segments/*.m2v
 data/laserdisc/segments/*.ogg
+data/laserdisc/segments/*.txt
 
 # Extracted video frames (generated)
 data/videos/frames/
+
+# Generated chapter pipeline artifacts (superfamiconv output, extracted frames/audio)
+data/chapters/*/*.png
+data/chapters/*/*.palette
+data/chapters/*/*.tiles
+data/chapters/*/*.tilemap
+data/chapters/*/*.pcm
 
 # Python cache
 __pycache__/
