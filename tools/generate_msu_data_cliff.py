@@ -9,11 +9,11 @@ cliff.m2v video file and cliff.ogg audio file.
 Pipeline:
 1. Parse chapter XMLs for frame ranges (laserdisc frame numbers)
 2. Extract video frames from cliff.m2v per chapter (ffmpeg, CPU decode)
-   - 29.97fps source -> fps=30000/1001 filter
+   - 29.97fps source -> fps=24000/1001 rate conversion
    - yadif deinterlace -> trim by time -> scale 256x192 -> 16-color palette
 3. Convert frames to SNES tiles/tilemap/palette (superfamiconv)
    - Each 256x192 frame produces up to 768 unique 8x8 tiles
-   - reduce_tiles() merges down to 512 (VRAM limit at 4BPP)
+   - reduce_tiles() merges down to 384 (VRAM limit at 4BPP)
 4. Package into .msu file (msu1blockwriter.py)
 5. Extract audio per chapter from cliff.ogg -> MSU-1 PCM format
 
@@ -67,7 +67,7 @@ FPS = 24                 # MSU-1 playback fps (integer, passed to msu1blockwrite
 BPP = 4
 PALETTES = 1             # Single 16-color sub-palette per frame
 MAX_COLORS = PALETTES * (2 ** BPP)  # 1 * 16 = 16 colors
-MAX_TILES = 512          # VRAM tile buffer: $4000 bytes = 512 tiles at 4BPP
+MAX_TILES = 384          # VRAM tile buffer: $3000 bytes = 384 tiles at 4BPP
 FRAME_WIDTH = 256
 FRAME_HEIGHT = 192
 TILEMAP_WIDTH = 32       # tiles per row (256 / 8)
@@ -211,13 +211,13 @@ def extract_chapter_frames(chapter_info, chapter_dir, video_path):
 
     # Filter chain:
     # 1. yadif: deinterlace 29.97i -> progressive
-    # 2. fps=30000/1001: rate conversion to 29.97fps (Cliff Hanger native rate)
+    # 2. fps=24000/1001: rate conversion to ~23.976fps MSU-1 playback rate
     # 3. trim: select the frame range by time offset
     # 4. setpts: reset timestamps after trim
     # 5. scale: resize to SNES resolution (256x192)
     # 6. palettegen/paletteuse: quantize to 16 colors with bayer dithering
     filter_str = (
-        f'yadif,fps=30000/1001,'
+        f'yadif,fps=24000/1001,'
         f'trim=start={offset_seconds:.6f}:duration={duration_s:.6f},'
         f'setpts=PTS-STARTPTS,'
         f'scale={FRAME_WIDTH}:{FRAME_HEIGHT}[s];'
@@ -400,7 +400,7 @@ def decode_tiles_4bpp_rgb(tiles_raw, palette_rgb):
 def reduce_tiles(tile_file, tilemap_file, palette_file, max_tiles=MAX_TILES):
     """Reduce tile count to max_tiles using global greedy merge in RGB color space.
 
-    SNES VRAM budget is $4000 bytes = 512 tiles at 4BPP. Video frames at
+    SNES VRAM budget is $3000 bytes = 384 tiles at 4BPP. Video frames at
     256x192 can have up to 768 unique tiles (32x24 grid). This function finds
     the most similar tile pairs across the ENTIRE image and merges them,
     distributing quality loss evenly rather than concentrating it in specific rows.
@@ -511,7 +511,7 @@ def convert_frame_superfamiconv(png_path):
 
     # 1. Generate palette (single 16-color sub-palette)
     r = subprocess.run([sfc, 'palette', '-i', rel_png, '-d', rel_pal,
-                        '-C', str(MAX_COLORS), '-P', '1'], **run_kw)
+                        '-C', str(MAX_COLORS)], **run_kw)
     if r.returncode != 0:
         return False, f"palette: {r.stderr.strip()}"
 
@@ -527,7 +527,7 @@ def convert_frame_superfamiconv(png_path):
     if r.returncode != 0:
         return False, f"map: {r.stderr.strip()}"
 
-    # 4. Reduce tiles to fit in VRAM buffer (512 max at 4BPP)
+    # 4. Reduce tiles to fit in VRAM buffer (384 max at 4BPP)
     reduce_tiles(tile_file, map_file, pal_file)
 
     # 5. Pad tilemap to 32x24
@@ -590,7 +590,7 @@ def main():
     print(f"MSU title:    {MSU_TITLE}")
     print(f"Workers:      {args.workers}")
     print(f"Resolution:   {FRAME_WIDTH}x{FRAME_HEIGHT} ({TILEMAP_WIDTH}x{TILEMAP_HEIGHT} tiles)")
-    print(f"Max tiles:    {MAX_TILES} (VRAM $4000 bytes at {BPP}BPP)")
+    print(f"Max tiles:    {MAX_TILES} (VRAM $3000 bytes at {BPP}BPP)")
     print(f"Colors:       {MAX_COLORS} ({PALETTES} sub-palette)")
 
     ffmpeg_path, needs_win_paths = get_ffmpeg()
