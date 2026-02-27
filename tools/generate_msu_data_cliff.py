@@ -511,7 +511,7 @@ def convert_frame_superfamiconv(png_path):
 
     # 1. Generate palette (single 16-color sub-palette)
     r = subprocess.run([sfc, 'palette', '-i', rel_png, '-d', rel_pal,
-                        '-P', '1'], **run_kw)
+                        '-C', str(MAX_COLORS), '-P', '1'], **run_kw)
     if r.returncode != 0:
         return False, f"palette: {r.stderr.strip()}"
 
