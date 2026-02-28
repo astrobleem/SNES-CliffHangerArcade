@@ -61,7 +61,7 @@ The project builds under Linux/WSL using `make` and a Python 3 toolchain. The as
 make clean && make
 ```
 
-The MSU-1 video data pipeline is a separate step that extracts video frames from Daphne laserdisc segment files and packages them for the SNES.
+The MSU-1 video data pipeline is a separate step that extracts video frames from the laserdisc .m2v source and packages them for the SNES.
 
 For full build instructions, prerequisites, video pipeline details, and troubleshooting, see **[`BUILD.md`](BUILD.md)**.
 

@@ -6,6 +6,7 @@
 
   .def msu1Bg hashPtr.1
   .def objMsu1Audio hashPtr.6
+  .def objMsuLogo hashPtr.7
 
   NEW Brightness.CLS.PTR hashPtr.2
   lda #BRIGHTNESS.NONE
@@ -33,25 +34,28 @@
   sta.w MainScreen
 
   rep #$31
-  NEW Background.generic.CLS.PTR msu1Bg BG.LAYER.0 BG.msu1.PTR
 
-  lda #BRIGHTNESS.FULL
-  CALL Brightness.fadeTo.MTD hashPtr.2 
-
-  ;wait for screen to lighten up
-  jsr SavePC
-  CALL Brightness.isDone.MTD hashPtr.2 
-  bcs +
-	rts
-+
+  ;upload SPC samples while screen is still dark (NMI stop freezes display ~1 sec)
   jsr core.nmi.stop
   NEW Spc.CLS.PTR hashPtr.3
-
   lda.w #0
   CALL Spc.SpcIssueSamplePackUpload.MTD hashPtr.3
   jsr core.nmi.start
 
-  ;play dragon roar via MSU-1 PCM track 900 (above chapter ID range to avoid collision)
+  NEW Background.generic.CLS.PTR msu1Bg BG.LAYER.0 BG.msu1.PTR
+  NEW Msulogo.CLS.PTR objMsuLogo 0 138
+
+  lda #BRIGHTNESS.FULL
+  CALL Brightness.fadeTo.MTD hashPtr.2
+
+  ;wait for screen to lighten up
+  jsr SavePC
+  CALL Brightness.isDone.MTD hashPtr.2
+  bcs +
+	rts
++
+
+  ;play thunder via MSU-1 PCM track 900 (above chapter ID range to avoid collision)
   NEW Msu1.audio.CLS.PTR objMsu1Audio
   lda.w #900
   CALL Msu1.audio.playAudio.MTD objMsu1Audio
@@ -70,7 +74,7 @@
   jsr core.input.get.trigger
   and.w #(JOY_BUTTON_A | JOY_BUTTON_START)
   bne ++++
-	lda.w #SCRIPT.MAX_AGE.DEFAULT
+	lda.w #$180
 	jsr abstract.Script.ageExceeded
 	bcc +
 
@@ -90,6 +94,7 @@
 	beq ++
 	  rts
 ++
+	CALL Msulogo.kill.MTD objMsuLogo
 	CALL Background.generic.kill.MTD msu1Bg
 
     jsr core.cgram.clear

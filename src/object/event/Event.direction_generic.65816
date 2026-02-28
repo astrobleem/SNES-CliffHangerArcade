@@ -62,26 +62,26 @@ _createArrows:
 _direction_hasDir:
   cmp #JOY_BUTTON_A
   bne _not_hands
-    ;hands action — show hands icon centered on screen
-    NEW Hands_icon.CLS.PTR this.sprite 120 300
+    ;hands action — show hands icon near bottom of screen
+    NEW Hands_icon.CLS.PTR this.sprite 120 360
     lda #120
     sta this.scoreX
-    lda #80
+    lda #140
     sta this.scoreY
     lda event.endFrame
-    CALL Hands_icon.reset.MTD this.sprite 120 300
+    CALL Hands_icon.reset.MTD this.sprite 120 360
     jmp ++++
 _not_hands:
   cmp #JOY_BUTTON_B
   bne _not_feet
-    ;feet action — show feet icon centered on screen
-    NEW Feet_icon.CLS.PTR this.sprite 120 300
+    ;feet action — show feet icon near bottom of screen
+    NEW Feet_icon.CLS.PTR this.sprite 120 360
     lda #120
     sta this.scoreX
-    lda #80
+    lda #140
     sta this.scoreY
     lda event.endFrame
-    CALL Feet_icon.reset.MTD this.sprite 120 300
+    CALL Feet_icon.reset.MTD this.sprite 120 360
     jmp ++++
 _not_feet:
   cmp #JOY_DIR_LEFT

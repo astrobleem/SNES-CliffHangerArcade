@@ -1,0 +1,42 @@
+/**
+* MSU-1 logo sprite overlay for splash screen
+*
+* @param a<int, 16bit>  x-pos
+* @param 1<int, 16bit>  y-pos
+*/
+.include "src/object/sprite/Msulogo.h"
+.section "Msulogo"
+
+  METHOD init
+  sep #$20
+  rep #$31
+
+  lda OBJECT.CALL.ARG.1,s
+  sta.b dimension.position.x + 1
+
+  lda OBJECT.CALL.ARG.2,s
+  sta.b dimension.position.y + 1
+
+  lda #SPRITE.msulogo.PTR
+  jsr abstract.Sprite.startAnimation
+  sep #$20
+  lda.b #$1
+  sta.b animation.isLooping
+  stz.b animation.isPlaying
+  lda.b #$30
+  sta.b animation.priority
+  rts
+
+  METHOD play
+  jsr abstract.Sprite.playAnimation
+  rts
+
+  METHOD kill
+  rep #$31
+  jsr abstract.Sprite.deallocate
+  lda #OBJR_kill
+  sta 3,s
+  rts
+
+  CLASS Msulogo
+.ends

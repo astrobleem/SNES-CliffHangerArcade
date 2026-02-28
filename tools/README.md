@@ -1,6 +1,6 @@
 # Tools Overview
 
-This folder contains all helper utilities for the SNES Super Dragon's Lair Arcade build pipeline. Scripts are written in Python 3 (requires Pillow and NumPy); external dependencies such as WLA-DX and superfamiconv are included as pre-built binaries.
+This folder contains all helper utilities for the SNES Cliff Hanger Arcade build pipeline. Scripts are written in Python 3 (requires Pillow and NumPy); external dependencies such as WLA-DX and superfamiconv are included as pre-built binaries.
 
 Install Python dependencies with `pip install -r requirements.txt`.
 
@@ -11,8 +11,7 @@ Install Python dependencies with `pip install -r requirements.txt`.
 | **Core Pipeline** | |
 | `lua_scene_exporter.py` | Export DirkSimple `game.lua` scene data to XML event files with frame-accurate timing |
 | `xmlsceneparser.py` | Convert XML chapter events to assembly `.script` + `.data` files (516 chapters) |
-| `generate_msu_data.py` | Full MSU-1 video pipeline: Daphne .m2v extraction, tile conversion, .msu packaging |
-| `generate_segment_timing.py` | Generate per-segment cumulative timing offsets from Daphne framefile + ffprobe |
+| `generate_msu_data_cliff.py` | Full MSU-1 video pipeline: frame extraction from cliff.m2v, tile conversion, .msu packaging |
 | `generate_playthrough_tests.py` | Generate per-scene Mesen Lua test scripts with golden path BFS |
 | `build_dist.sh` | Full distribution build: ROM + MSU-1 video/audio + frame preservation |
 | **Graphics & Assets** | |
@@ -28,14 +27,10 @@ Install Python dependencies with `pip install -r requirements.txt`.
 | **MSU-1 Audio & Data** | |
 | `msu1blockwriter.py` | Package chapter tile/tilemap/palette data into .msu file format |
 | `msu1pcmwriter.py` | Validate WAV and prepend MSU-1 PCM header (44.1 kHz stereo 16-bit) |
-| `batch_convert_msu.py` | Batch convert Daphne .ogg audio files to MSU-1 PCM format |
 | `convert_roar_pcm.py` | Convert dragon roar WAV to MSU-1 PCM (track 900) |
 | `generate_manifest.py` | Generate manifest.xml for bsnes/higan MSU-1 emulation |
 | `verify_msu.py` | Verify .msu binary consistency against chapter.id files |
 | **Video Source Processing** | |
-| `convert_daphne.py` / `.bat` | Convert Daphne .m2v/.ogg segments to concatenated MP4 |
-| `convert_video_fps.sh` / `.bat` | Re-encode video from 29.97 fps to 23.976 fps (laserdisc rate) |
-| `analyze_segments.py` | Analyze Daphne framefile segment-to-frame mapping |
 | `generate_ld_frame_table.py` | Generate chapter_ld_frames.inc ROM lookup table from chapter IDs |
 | `refresh_frames.sh` | Copy extracted video frames to data/videos/frames for preservation |
 | **Event & Chapter Management** | |
@@ -43,7 +38,6 @@ Install Python dependencies with `pip install -r requirements.txt`.
 | `remove_event.py` | Delete Event class files |
 | `chapter_event_inventory.py` | Inventory all event types across 516 chapters, generate coverage report |
 | `expand_cutscene_events.py` | Expand cutscene event macros with boilerplate method code |
-| `extract_death_frames.py` | Extract sample frames from death segments for analysis |
 | `regen_chapters.sh` | Regenerate chapter include files from all XMLs |
 | **FXPAK Pro Hardware** | |
 | `fxpak_push.py` | Push ROM to FXPAK Pro via QUsb2Snes and boot it |
@@ -101,27 +95,25 @@ python3 tools/xmlsceneparser.py data/events/black_knight_seq2.xml
 
 Type normalization: `direction` + `type="left"` becomes `Event.direction_generic` with `JOY_DIR_LEFT`, sequence events become `Event.seq_generic`, etc.
 
-### generate_msu_data.py
+### generate_msu_data_cliff.py
 
-Orchestrates the full MSU-1 video pipeline from Daphne .m2v/.ogg source segments:
+Orchestrates the full MSU-1 video pipeline for Cliff Hanger's single-file video format. Reads `cliff/cliff.txt` to discover the video/audio filenames, then processes each chapter:
 
-1. **Phase 1a:** Extract 256x192 PNG frames via ffmpeg (CPU decode, yadif deinterlace, 23.976 fps)
-2. **Phase 1b:** Extract audio from paired .ogg segments to WAV then MSU-1 PCM
-3. **Phase 1c:** Copy PCM files to build/ and sfc/ directories
-4. **Phase 1d:** Copy dragon roar PCM (track 900) from data/sounds/
-5. **Phase 1e:** Generate blank frames for zero-duration routing chapters
-6. **Phase 2:** Convert each PNG to SNES palette/tiles/tilemap via superfamiconv, then merge 768 unique tiles to 384 per frame using RGB-space L2-distance greedy reduction
-7. **Phase 3:** Package all chapters into single `.msu` file via msu1blockwriter.py
+1. **Phase 1:** Extract 256x192 PNG frames via ffmpeg (CPU decode, yadif deinterlace, 29.97 fps)
+2. **Phase 2:** Extract audio from cliff.ogg per chapter to MSU-1 PCM format
+3. **Phase 2b:** Copy PCM files to build/ and distribution/ directories
+4. **Phase 3:** Convert each PNG to SNES palette/tiles/tilemap via superfamiconv, then merge 768 unique tiles to 512 per frame using RGB-space L2-distance greedy reduction
+5. **Phase 4:** Package all chapters into single `.msu` file via msu1blockwriter.py
 
 ```bash
-# Full pipeline (~1hr with 8 workers)
-wsl -e bash -c "cd <wsl-project-root> && python3 tools/generate_msu_data.py --workers 8"
+# Full pipeline
+wsl -e bash -c "cd <wsl-project-root> && python3 tools/generate_msu_data_cliff.py --workers 8"
 
-# Skip frame extraction, reuse existing PNGs (~23 min)
-wsl -e bash -c "cd <wsl-project-root> && python3 tools/generate_msu_data.py --skip-extract --workers 8"
+# Skip frame extraction, reuse existing PNGs
+wsl -e bash -c "cd <wsl-project-root> && python3 tools/generate_msu_data_cliff.py --skip-extract --workers 8"
 
 # Audio-only (skip video extraction, conversion, and packaging)
-wsl -e bash -c "cd <wsl-project-root> && python3 tools/generate_msu_data.py --skip-extract --skip-convert --skip-package --workers 8"
+wsl -e bash -c "cd <wsl-project-root> && python3 tools/generate_msu_data_cliff.py --skip-extract --skip-convert --skip-package --workers 8"
 ```
 
 **Key constraints:**
@@ -129,19 +121,9 @@ wsl -e bash -c "cd <wsl-project-root> && python3 tools/generate_msu_data.py --sk
 - superfamiconv requires RELATIVE paths (not absolute `/mnt/` paths)
 - 16 colors per frame (1 sub-palette); CGRAM limited to 8 BG palettes
 - `make clean` DELETES `data/chapters/` — run MSU generation AFTER final build
-- Requires Daphne framefile at `data/laserdisc/dl_lair.txt`
+- Source files read from `cliff/` directory (auto-detected via `cliff/cliff.txt`)
 
-**Output:** `build/SuperDragonsLairArcade.msu` (~516 MB) + per-chapter `.pcm` files
-
-### generate_segment_timing.py
-
-Parses the Daphne framefile (`data/laserdisc/dl_lair.txt`), probes each .m2v segment with ffprobe for actual duration, and builds a cumulative timing table. Output: `data/segment_timing.json`.
-
-```bash
-wsl -e bash -c "cd <wsl-project-root> && python3 tools/generate_segment_timing.py"
-```
-
-Run once; only re-run if Daphne source segments change.
+**Output:** `build/CliffHangerArcade.msu` + per-chapter `.pcm` files
 
 ### generate_playthrough_tests.py
 
@@ -228,10 +210,6 @@ python3 msu1pcmwriter.py -infile audio/scene1.wav -outfile build/scene1-1.pcm -l
 
 Converts the dragon roar WAV (`roar.sfx_normal.wav`) to MSU-1 PCM format as track 900 for the MSU-1 splash screen. Output: `data/sounds/SuperDragonsLairArcade-900.pcm`. Only re-run if the source WAV changes.
 
-### batch_convert_msu.py
-
-Batch converts all Daphne `.ogg` audio files to MSU-1 PCM format. Finds `.ogg` files in the Daphne CDROM directory, converts each to WAV, then wraps in PCM with sequential track numbering.
-
 ### generate_manifest.py
 
 Generates `manifest.xml` for bsnes/higan MSU-1 emulation by scanning for actual PCM files in the output directory and listing track IDs.
@@ -308,18 +286,6 @@ Configured in `.mcp.json`. Runs on Windows Python, delegates to WSL for builds a
 Tests extraction of a single chapter to verify video/audio timing alignment before running the full pipeline.
 
 ## Video Source Processing
-
-### convert_daphne.py / .bat
-
-Parses the Daphne framefile and converts `.m2v` video segments to a concatenated MP4.
-
-### convert_video_fps.sh / .bat
-
-Re-encodes video from 29.97 fps (Daphne interlaced) to 23.976 fps (laserdisc rate) to align with XML chapter timings.
-
-### analyze_segments.py
-
-Analyzes mapping between Daphne framefile laserdisc frame numbers and cumulative positions across concatenated .m2v segments.
 
 ### generate_ld_frame_table.py
 

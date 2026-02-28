@@ -51,10 +51,10 @@ Install dependencies: `pip install -r requirements.txt` (Pillow, NumPy)
 - **Registration:** All sounds must be registered in `src/object/audio/spcinterface.h`
 
 #### Video (MSU-1)
-- 516 chapters defined in `data/events/*.xml` (DirkSimple game data format)
-- Pipeline: `generate_msu_data.py` orchestrates ffmpeg → superfamiconv → tile reduction → msu1blockwriter.py
-- Output: ~568 MB `.msu` file with 256x192 frames, 16 colors, 512 tiles per frame
-- Video timing: 23.976 fps (source: Daphne `.m2v` segments in `data/laserdisc/segments/`)
+- 265 chapters defined in `data/events/*.xml` (DirkSimple game data format)
+- Pipeline: `generate_msu_data_cliff.py` orchestrates ffmpeg → superfamiconv → tile reduction → msu1blockwriter.py
+- Output: `.msu` file with 256x192 frames, 16 colors, 512 tiles per frame
+- Video timing: 29.97 fps (source: single `cliff.m2v` in `cliff/` directory)
 
 ### File Structure
 ```

@@ -230,19 +230,19 @@ After completing all 8 scenes (row >= 8), the router transitions to `score_entry
 
 ### MSU-1 Video Data Pipeline
 
-The `generate_msu_data.py` script handles the full video pipeline. The current script still references Dragon's Lair paths/constants internally but the Cliff Hanger project uses the same Daphne framefile-based extraction system.
+The `generate_msu_data_cliff.py` script handles the full video pipeline. It reads `cliff/cliff.txt` to discover the video/audio filenames, then extracts frames per chapter using laserdisc frame numbers from the chapter XMLs.
 
-**Video source**: Daphne .m2v segment files (interlaced 29.97fps MPEG-2 for Cliff Hanger), deinterlaced and rate-converted by ffmpeg.
+**Video source**: Single `cliff.m2v` file (interlaced 29.97fps MPEG-2), deinterlaced and rate-converted by ffmpeg. Source files live in `cliff/` at the project root.
 
 ```bash
-# Full pipeline: extract frames + audio from .m2v/.ogg, convert tiles, package .msu
-wsl -e bash -c "cd <wsl-project-root> && python3 tools/generate_msu_data.py --workers 8"
+# Full pipeline: extract frames + audio, convert tiles, package .msu
+wsl -e bash -c "cd <wsl-project-root> && python3 tools/generate_msu_data_cliff.py --workers 8"
 
 # Clean + full pipeline (re-extracts everything from scratch)
-wsl -e bash -c "cd <wsl-project-root> && python3 tools/generate_msu_data.py --clean --workers 8"
+wsl -e bash -c "cd <wsl-project-root> && python3 tools/generate_msu_data_cliff.py --clean --workers 8"
 
 # Skip extraction (use existing PNG frames), only convert tiles + package .msu
-wsl -e bash -c "cd <wsl-project-root> && python3 tools/generate_msu_data.py --skip-extract --workers 8"
+wsl -e bash -c "cd <wsl-project-root> && python3 tools/generate_msu_data_cliff.py --skip-extract --workers 8"
 
 # Output: build/CliffHangerArcade.msu
 # Also copied to: distribution/CliffHangerArcade.msu

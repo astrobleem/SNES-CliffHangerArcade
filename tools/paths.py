@@ -7,9 +7,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DISTRIBUTION = PROJECT_ROOT / "distribution"
 BUILD_DIR = PROJECT_ROOT / "build"
 TOOLS_DIR = PROJECT_ROOT / "tools"
-LASERDISC_DIR = PROJECT_ROOT / "data" / "laserdisc"
-DAPHNE_FRAMEFILE = LASERDISC_DIR / "framefile" / "dlcdrom.TXT"
-DAPHNE_CONTENT = LASERDISC_DIR / "DLCDROM"
+CLIFF_DIR = PROJECT_ROOT / "cliff"
+CLIFF_FRAMEFILE = CLIFF_DIR / "cliff.txt"
 
 
 def _load_config():

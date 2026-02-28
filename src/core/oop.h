@@ -170,6 +170,7 @@ OBJID.Sprite.life_counter db
 OBJID.Sprite.score db
 OBJID.Sprite.bang db
 OBJID.Hdma.dashboard.mode db
+OBJID.Msulogo db
 MAXOBJID	ds 0
 .ende
 
@@ -263,4 +264,5 @@ OopClassLut:
 	PTRLONG OopClassLut Sprite.score.CLS
 	PTRLONG OopClassLut Sprite.bang.CLS
 	PTRLONG OopClassLut Hdma.dashboard.mode.CLS
+	PTRLONG OopClassLut Msulogo.CLS
 .ends

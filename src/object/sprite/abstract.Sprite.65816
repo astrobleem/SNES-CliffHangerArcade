@@ -290,6 +290,7 @@ _writeOamBuffer:
     asl a
     ora animation.buffer.flags
     ora animation.buffer.nametable
+    ora.b animation.priority
     sta.w GLOBAL.oamBuffer,x
     inx
     iny
@@ -552,8 +553,9 @@ SpriteAnimationLUT:
   PTRLONG SpriteAnimationLUT SPRITE.points.normal
   PTRLONG SpriteAnimationLUT SPRITE.points.extra
   PTRLONG SpriteAnimationLUT SPRITE.bang
+  PTRLONG SpriteAnimationLUT SPRITE.msulogo
 
-.ends	
+.ends
 
   ;SPRITE_ANIMATION zero 
   SPRITE_ANIMATION right_arrow 
@@ -572,6 +574,7 @@ SpriteAnimationLUT:
   SPRITE_ANIMATION points.normal 
   SPRITE_ANIMATION points.extra 
   SPRITE_ANIMATION bang
+  SPRITE_ANIMATION msulogo
 
 
 

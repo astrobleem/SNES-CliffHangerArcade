@@ -33,28 +33,17 @@ primarily asset creation, MSU-1 video pipeline execution, and testing.
 
 ## Priority 1: Laserdisc Setup
 
-The source video files must be placed correctly for the MSU-1 pipeline.
+The MSU-1 pipeline reads `cliff/cliff.txt` to discover the video and audio filenames.
+Place the laserdisc source files in the `cliff/` directory at the project root:
 
-### Move Laserdisc Files
-
-The `cliff/` directory (currently in the project root, excluded from git) contains:
-- `cliff.m2v` — MPEG-2 video (1.23 GB, single file)
-- `cliff.ogg` — Ogg Vorbis audio
-- `cliff.txt` — frame index
-
-Copy or symlink these to `data/laserdisc/segments/`:
-
-```bash
-mkdir -p data/laserdisc/segments
-cp cliff/cliff.m2v data/laserdisc/segments/
-cp cliff/cliff.ogg data/laserdisc/segments/
-cp cliff/cliff.txt data/laserdisc/segments/
+```
+cliff/
+  cliff.m2v   — MPEG-2 video (1.23 GB, single file)
+  cliff.ogg   — Ogg Vorbis audio
+  cliff.txt   — frame index (maps laserdisc frame number to .m2v filename)
 ```
 
-### Create Daphne Framefile
-
-Create `data/laserdisc/dlcdrom.TXT` with a single-segment entry pointing to cliff.m2v.
-The `generate_msu_data_cliff.py` pipeline reads this to locate the video source.
+No copies or symlinks needed — the pipeline reads directly from `cliff/`.
 
 ---
 

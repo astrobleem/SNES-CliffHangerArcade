@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Convert the dragon roar WAV to MSU-1 PCM format at track 900."""
+"""Convert a WAV to MSU-1 PCM format at track 900 (splash screen sound effect)."""
 import subprocess, os, sys
 from paths import FFMPEG, PROJECT_ROOT, BUILD_DIR as _BUILD_DIR, DISTRIBUTION, wsl_to_windows as to_win_path
 
-INPUT_WAV = str(PROJECT_ROOT / "roar.sfx_normal.wav")
-STEREO_WAV = str(PROJECT_ROOT / "data" / "sounds" / "dragon_roar_msu1.wav")
+INPUT_WAV = str(PROJECT_ROOT / "data" / "sounds" / "loud_thunder.wav")
+STEREO_WAV = str(PROJECT_ROOT / "data" / "sounds" / "loud_thunder_msu1.wav")
 TRACK_NUM = 900
 BUILD_DIR = str(_BUILD_DIR)
 SFC_DIR = str(DISTRIBUTION)
-BASE_NAME = "SuperDragonsLairArcade"
+BASE_NAME = "CliffHangerArcade"
 
-# Step 1: Convert to 44100Hz stereo 16-bit WAV
+# Step 1: Ensure 44100Hz stereo 16-bit WAV
 print(f"Converting {INPUT_WAV} to 44100Hz stereo...")
 r = subprocess.run([
     FFMPEG, "-y", "-i", to_win_path(INPUT_WAV),
@@ -50,4 +50,4 @@ for out_dir in [BUILD_DIR, SFC_DIR]:
     pcm_size = os.path.getsize(pcm_path)
     print(f"Wrote {pcm_path} ({pcm_size} bytes)")
 
-print("Done! Dragon roar PCM at track 900.")
+print("Done! Thunder PCM at track 900.")
